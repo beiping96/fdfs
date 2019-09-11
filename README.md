@@ -1,26 +1,8 @@
-#fdfs_client.go
+# FDFS
 
-fastdfs go client implement
+Simple Go Client of Fast0DFS
 
-**1 support** 
+[![GoDoc](https://godoc.org/github.com/beiping96/fdfs?status.svg)](https://godoc.org/github.com/beiping96/fdfs)
+[![Go Report Card](https://goreportcard.com/badge/github.com/beiping96/fdfs)](https://goreportcard.com/report/github.com/beiping96/fdfs)
 
-upload(UploadByFilename,UploadByBuffer)
-
-download(DownloadToFile,DownloadToBuffer)
-
-delete(DeleteFile)
-
-**2 append is not support(limited by fastdfs server)**
-
-you can implement append with delete origin && upload new again
-
-**3 UploadByFilename realized with sendfile syscall in linux,so UploadByBuffer is depracated**
-
-**4 realized conn_pool,pool_size control by config file**
-
-**5 details see client_test.go,good luck ^_^**
-
-##$ go get github.com/tedcy/fdfs_client
-
-#Author
-yue.cheng.ted@gmail.com
+[FDFS](https://github.com/happyfish100/fastdfs)

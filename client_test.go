@@ -1,4 +1,4 @@
-package fdfs_client
+package fdfs
 
 import (
 	"fmt"
@@ -6,8 +6,15 @@ import (
 	"testing"
 )
 
+var (
+	cfg = &Config{
+		Tracker: []string{"172.16.3.15:22122"},
+		MaxConn: 100,
+	}
+)
+
 func TestUpload(t *testing.T) {
-	client, err := NewClientWithConfig("fdfs.conf")
+	client, err := NewClient(cfg)
 	defer client.Destory()
 	if err != nil {
 		fmt.Println(err.Error())
@@ -35,7 +42,7 @@ func TestUpload(t *testing.T) {
 }
 
 func TestUploadFile100(t *testing.T) {
-	client, err := NewClientWithConfig("fdfs.conf")
+	client, err := NewClient(cfg)
 	defer client.Destory()
 	if err != nil {
 		fmt.Println(err.Error())
@@ -66,7 +73,7 @@ func TestUploadFile100(t *testing.T) {
 }
 
 func TestUploadBuffer100(t *testing.T) {
-	client, err := NewClientWithConfig("fdfs.conf")
+	client, err := NewClient(cfg)
 	defer client.Destory()
 	if err != nil {
 		fmt.Println(err.Error())

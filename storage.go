@@ -1,4 +1,4 @@
-package fdfs_client
+package fdfs
 
 import (
 	"bufio"
@@ -11,11 +11,11 @@ import (
 
 type storageUploadTask struct {
 	header
-	//req
+	// request
 	fileInfo         *fileInfo
 	storagePathIndex int8
-	//res
-	fileId string
+	// response
+	fileID string
 }
 
 func (this *storageUploadTask) SendReq(conn net.Conn) error {
@@ -83,7 +83,7 @@ func (this *storageUploadTask) RecvRes(conn net.Conn) error {
 		return err
 	}
 
-	this.fileId = groupName + "/" + remoteFileName
+	this.fileID = groupName + "/" + remoteFileName
 	return nil
 }
 
@@ -163,18 +163,18 @@ func (this *storageDownloadTask) recvFile(conn net.Conn) error {
 
 func (this *storageDownloadTask) recvBuffer(conn net.Conn) error {
 	var (
-		err				error
+		err error
 	)
 	//buffer allocate by user
 	if this.buffer != nil {
 		if int64(len(this.buffer)) < this.pkgLen {
 			return fmt.Errorf("StorageDownloadTask buffer < pkgLen can't recv")
-        }
+		}
 		if err = writeFromConnToBuffer(conn, this.buffer, this.pkgLen); err != nil {
 			return fmt.Errorf("StorageDownloadTask writeFromConnToBuffer %s", err)
-        }
+		}
 		return nil
-    }
+	}
 	writer := new(bytes.Buffer)
 
 	if err = writeFromConn(conn, writer, this.pkgLen); err != nil {

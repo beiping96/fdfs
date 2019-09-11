@@ -1,4 +1,4 @@
-package fdfs_client
+package fdfs
 
 import (
 	"container/list"
@@ -129,8 +129,6 @@ func (this *connPool) get() (net.Conn, error) {
 		conn := e.Value.(pConn)
 		return conn, nil
 	}
-	//not reach
-	return nil, nil
 }
 
 func (this *connPool) put(pConn pConn) error {
