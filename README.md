@@ -124,7 +124,9 @@ func clientDestoryMonitor(ctx context.Context) {
 }
 
 func GetConstClient() Client { return constClient }
+```
 
+``` go
 // main.go
 package main
 
@@ -152,3 +154,5 @@ func main() {
     grace.Run(time.Second)
 }
 ```
+
+[![GoDoc](https://godoc.org/github.com/beiping96/fdfs?status.svg)](https://godoc.org/github.com/beiping96/fdfs)
